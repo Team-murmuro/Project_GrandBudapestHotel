@@ -7,4 +7,16 @@ namespace Utils.EnumType
         Walk,
 
     }
+
+    // 손님 상태
+    public enum CustomerState
+    {
+
+    }
+
+    // 직원 상태
+    public enum StaffState
+    {
+
+    }
 }
