@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D playerCollider;
 
     private Vector2 moveDir;
-    private float moveSpeed = 2.5f;
+    private float moveSpeed = 5.0f;
     private const float moveThreshold = 0.01f;
 
     public bool isMove = false;
