@@ -2,19 +2,20 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private Collider2D playerCollider;
+    private Rigidbody2D playerRb;
 
     private Vector2 moveDir;
     private float moveSpeed = 5.0f;
     private const float moveThreshold = 0.01f;
 
+    private Vector2 minPlayerBoundary = new Vector2(-17.9f, -9.7f);
+    private Vector2 maxPlayerBoundary = new Vector2(17.9f, 9.7f);
+
     public bool isMove = false;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        playerCollider = GetComponent<Collider2D>();
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -26,15 +27,17 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        rb.MovePosition(rb.position + (moveDir.normalized * moveSpeed * Time.deltaTime));
+        playerRb.MovePosition(playerRb.position + (moveDir.normalized * moveSpeed * Time.deltaTime));
 
-        //if (moveDir.y > 0)
-        //    SetDirection(Direction.Back);
-        //else if (moveDir.y < 0)
-        //    SetDirection(Direction.Front);
-        //else if (moveDir.x != 0)
-        //    SetDirection(moveDir.x > 0 ? Direction.Right : Direction.Left);
-
+        if (transform.position.x < minPlayerBoundary.x)
+            transform.position = new Vector3(minPlayerBoundary.x, transform.position.y, transform.position.z);
+        else if (transform.position.x > maxPlayerBoundary.x)
+            transform.position = new Vector3(maxPlayerBoundary.x, transform.position.y, transform.position.z);
+        else if (transform.position.y < minPlayerBoundary.y)
+            transform.position = new Vector3(transform.position.x, minPlayerBoundary.y, transform.position.z);
+        else if (transform.position.y > maxPlayerBoundary.y)
+            transform.position = new Vector3(transform.position.x, maxPlayerBoundary.y, transform.position.z);
+        
         isMove = moveDir.sqrMagnitude > moveThreshold;
     }
 }
