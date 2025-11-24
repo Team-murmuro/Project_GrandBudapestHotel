@@ -19,6 +19,6 @@ public class UIManager : MonoBehaviour
 
     private void Init()
     {
-
+        DontDestroyOnLoad(gameObject);
     }
 }

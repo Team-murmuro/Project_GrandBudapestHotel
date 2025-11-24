@@ -1,15 +1,16 @@
 using UnityEngine;
+using Utils.EnumType;
 
 public class CustomerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private CustomerState customerState = CustomerState.Idle;
+
+    private void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
