@@ -1,0 +1,28 @@
+{
+  "Rooms": [
+    {
+      "id": 0,
+      "floor": 2,
+      "cleanliness": 100,
+      "isOccupied": false
+    },
+    {
+      "id": 2,
+      "floor": 2,
+      "cleanliness": 100,
+      "isOccupied": false
+    },
+    {
+      "id": 3,
+      "floor": 2,
+      "cleanliness": 100,
+      "isOccupied": false
+    },
+    {
+      "id": 4,
+      "floor": 2,
+      "cleanliness": 100,
+      "isOccupied": false
+    }
+  ]
+}

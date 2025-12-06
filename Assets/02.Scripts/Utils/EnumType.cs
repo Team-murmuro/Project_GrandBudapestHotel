@@ -4,8 +4,7 @@ namespace Utils.EnumType
     public enum PlayerState
     {
         Idle,
-        Walk,
-
+        Move
     }
 
     // 손님 상태
@@ -22,6 +21,10 @@ namespace Utils.EnumType
     // 직원 상태
     public enum StaffState
     {
-
+        Idle,  // 기본 상태
+        Wait,  // 대기 상태
+        Move,  // 이동 상태
+        Work,  // 작업 상태
+        Rest   // 휴식 상태
     }
 }

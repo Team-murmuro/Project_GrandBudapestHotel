@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class CustomerManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private static CustomerManager instance;
+    public static CustomerManager Instance {  get { return instance; } }
+
+    private void Awake()
     {
-        
+        if(instance != null && instance != this)
+        {
+            Destroy(instance);
+            return;
+        }
+
+        Init();
+        instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Init()
     {
-        
+
     }
 }
