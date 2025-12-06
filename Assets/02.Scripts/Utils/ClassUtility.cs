@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace Utils.ClassUtility
 {
-    public class CustomerDataList
+    // 플레이어 데이터 구조
+    [Serializable]
+    public class PlayerList
     {
-        public List<CustomerData> Customers;
+        public List<PlayerData> Players;
     }
 
     [Serializable]
@@ -16,6 +18,13 @@ namespace Utils.ClassUtility
         public string name;
         public string gender;
         public float moveSpeed;
+    }
+
+    // 손님 데이터 구조
+    [Serializable]
+    public class CustomerList
+    {
+        public List<CustomerData> Customers;
     }
 
     [Serializable]
@@ -30,6 +39,13 @@ namespace Utils.ClassUtility
         public int satisfaction;
         public string roomID;
         public string checkIn_Time;
+    }
+
+    // 방 데이터 구조
+    [Serializable]
+    public class RoomList
+    {
+        public List<RoomData> Rooms;
     }
 
     [Serializable]

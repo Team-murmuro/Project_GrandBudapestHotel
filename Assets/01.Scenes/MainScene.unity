@@ -2748,6 +2748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934656af9d0738547947c2eea2575956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Customers: []
 --- !u!1 &1223080606
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,7 +3981,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1986266291}
   - component: {fileID: 1986266292}
-  - component: {fileID: 1986266290}
   m_Layer: 0
   m_Name: DataManager
   m_TagString: Untagged
@@ -3988,18 +3988,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1986266290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986266289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 875b5e71b394bf24b93c672100ba07f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1986266291
 Transform:
   m_ObjectHideFlags: 0
@@ -4027,6 +4015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7f529f80d854ff41ae752cc007aee1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  customerDataFileName: CustomerData.json
+  roomDataFileName: RoomData.json
 --- !u!1 &2018795914
 GameObject:
   m_ObjectHideFlags: 0
