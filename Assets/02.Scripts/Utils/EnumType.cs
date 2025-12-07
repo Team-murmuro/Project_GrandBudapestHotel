@@ -14,6 +14,7 @@ namespace Utils.EnumType
         Wait,    // 대기 상태
         Wander,  // 배회 상태
         Rest,    // 휴식 상태
+        Room,    // 방에 있는 상태
         Event,   // 이벤트 상태
         CheckOut // 체크아웃 상태
     }

@@ -15,6 +15,7 @@ namespace Utils.ClassUtility
     {
         public int id;
         public int level;
+        public int reputation;
         public string name;
         public string gender;
         public float moveSpeed;

@@ -2,10 +2,11 @@
   "Players": [
     {
       "id": 0,
-      "level" :  1,
-      "name" : "Player",
-      "gender" : "M",
-      "moveSpeed" : 2.5
+      "level": 1,
+      "reputation": 0,
+      "name": "Player",
+      "gender": "M",
+      "moveSpeed": 2.5
     }
   ]
 }

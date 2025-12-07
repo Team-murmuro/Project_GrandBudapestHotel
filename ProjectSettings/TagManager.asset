@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Customer
+  - Employee
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -12,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Customer
   - 
   - 
   - 
@@ -41,6 +43,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BG
+    uniqueID: 2005682319
+    locked: 0
+  - name: Player
+    uniqueID: 1561782851
+    locked: 0
+  - name: Customer
+    uniqueID: 2817200661
     locked: 0
   m_RenderingLayers:
   - Default

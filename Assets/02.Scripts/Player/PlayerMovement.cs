@@ -37,7 +37,23 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, minPlayerBoundary.y, transform.position.z);
         else if (transform.position.y > maxPlayerBoundary.y)
             transform.position = new Vector3(transform.position.x, maxPlayerBoundary.y, transform.position.z);
-        
+
         isMove = moveDir.sqrMagnitude > moveThreshold;
+    }
+
+    private void OnTriggerEnter2D(Collider2D _coll)
+    {
+        if (_coll.CompareTag("Room"))
+        {
+            _coll.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D _coll)
+    {
+        if (_coll.CompareTag("Room"))
+        {
+            _coll.transform.GetChild(0).gameObject.SetActive(true);
+        }
     }
 }
