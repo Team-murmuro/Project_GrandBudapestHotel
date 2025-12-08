@@ -11,11 +11,13 @@ namespace Utils.EnumType
     public enum CustomerState
     {
         Idle,    // 기본 상태
+        Move,    // 이동 상태
         Wait,    // 대기 상태
         Wander,  // 배회 상태
         Rest,    // 휴식 상태
         Room,    // 방에 있는 상태
         Event,   // 이벤트 상태
+        Angry,   // 화남 상태
         CheckOut // 체크아웃 상태
     }
 

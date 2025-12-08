@@ -1,18 +1,27 @@
 using UnityEngine;
 using UnityEngine.AI;
-using Utils.EnumType;
 using Utils.ClassUtility;
+using Utils.EnumType;
+using static UnityEngine.GraphicsBuffer;
 
 public class CustomerController : MonoBehaviour
 {
-    private CustomerState customerState = CustomerState.Idle;
+    public CustomerState customerState = CustomerState.Idle;
     private CustomerData customerData = null;
 
     private NavMeshAgent agent;
+    private Transform target;
+
+    private GameObject speechBubble;
+
+    private float currentTime = 0.0f;
+    private const float waitTime = 15.0f;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        speechBubble = transform.GetChild(0).GetChild(0).gameObject;
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
@@ -23,7 +32,6 @@ public class CustomerController : MonoBehaviour
             return;
 
         StateHandler();
-        Debug.Log(HasReacheDestination());
     }
 
     private void StateHandler()
@@ -32,8 +40,22 @@ public class CustomerController : MonoBehaviour
         {
             case CustomerState.Idle:
                 break;
-            case CustomerState.Wait:
+            case CustomerState.Move:
+
                 break;
+            case CustomerState.Wait:
+                if(currentTime >= waitTime)
+                {
+                    currentTime = 0.0f;
+                    speechBubble.SetActive(false);
+                    customerState = CustomerState.Angry;
+                }
+                else
+                {
+                    currentTime += Time.deltaTime;
+                }
+
+                    break;
             case CustomerState.Wander:
                 break;
             case CustomerState.Rest:
@@ -41,6 +63,8 @@ public class CustomerController : MonoBehaviour
             case CustomerState.Room:
                 break;
             case CustomerState.Event:
+                break;
+            case CustomerState.Angry:
                 break;
             case CustomerState.CheckOut:
                 break;
@@ -50,6 +74,7 @@ public class CustomerController : MonoBehaviour
     // 목적지 설정
     public void SetDestination(Transform _target)
     {
+        target = _target;
         agent.SetDestination(_target.position);
     }
 
@@ -68,5 +93,19 @@ public class CustomerController : MonoBehaviour
             }
         }
         return false;
+    }
+
+    private void OnTriggerStay2D(Collider2D _coll)
+    {
+        if (_coll.CompareTag("Destination") && target != null)
+        {
+            if (_coll.transform == target && HasReacheDestination())
+            {
+                Debug.Log(":: 목적지 도착 ::");
+                target = null;
+                customerState = CustomerState.Wait;
+                speechBubble.SetActive(true);
+            }
+        }
     }
 }

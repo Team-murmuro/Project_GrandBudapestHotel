@@ -11,7 +11,7 @@ public class CustomerManager : MonoBehaviour
     public List<CustomerData> customers;
     private Queue<CustomerController> customerQueue = new Queue<CustomerController>();
 
-    private Vector3 spawnPos = new Vector3(0.0f, -11.0f, 0.0f);
+    private Transform spawnPos;
     public Transform[] impormationPos;
 
     private const int maxCustomerQueue = 5;
@@ -45,6 +45,7 @@ public class CustomerManager : MonoBehaviour
     public void Init()
     {
         customers = DataManager.Instance.LoadJson<CustomerList>(DataManager.Instance.customerDataFileName).Customers;
+        spawnPos = GameObject.Find("Door").transform.GetChild(0).transform;
         impormationPos = GameObject.Find("ImpormationLine").GetComponentsInChildren<Transform>();
     }
 
@@ -54,8 +55,9 @@ public class CustomerManager : MonoBehaviour
         if(currentTime >= customerSpawnTime && customerQueue.Count < 5)
         {
             currentTime = 0.0f;
-            CustomerController customer = Instantiate(customerPrefab, spawnPos, Quaternion.identity).GetComponent<CustomerController>();
+            CustomerController customer = Instantiate(customerPrefab, spawnPos.position, Quaternion.identity).GetComponent<CustomerController>();
             customer.SetDestination(impormationPos[customerQueue.Count + 1]);
+            customer.customerState = Utils.EnumType.CustomerState.Move;
             customerQueue.Enqueue(customer);
         }
         else
