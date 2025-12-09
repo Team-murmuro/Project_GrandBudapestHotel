@@ -11,7 +11,7 @@ public class CustomerManager : MonoBehaviour
     public List<CustomerData> customers;
     private Queue<CustomerController> customerQueue = new Queue<CustomerController>();
 
-    private Transform spawnPos;
+    public Transform spawnPos;
     public Transform[] impormationPos;
 
     private const int maxCustomerQueue = 5;
@@ -64,5 +64,11 @@ public class CustomerManager : MonoBehaviour
         {
             currentTime += Time.deltaTime;
         }
+    }
+
+    // º’¥‘ ¿Ãµø
+    public void CustomerMove()
+    {
+
     }
 }

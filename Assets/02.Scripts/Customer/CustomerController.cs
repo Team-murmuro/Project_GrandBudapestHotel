@@ -48,7 +48,7 @@ public class CustomerController : MonoBehaviour
                 {
                     currentTime = 0.0f;
                     speechBubble.SetActive(false);
-                    customerState = CustomerState.Angry;
+                    customerState = CustomerState.CheckOut;
                 }
                 else
                 {
@@ -67,6 +67,8 @@ public class CustomerController : MonoBehaviour
             case CustomerState.Angry:
                 break;
             case CustomerState.CheckOut:
+                SetDestination(CustomerManager.Instance.spawnPos);
+
                 break;
         }
     }
@@ -97,14 +99,21 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D _coll)
     {
-        if (_coll.CompareTag("Destination") && target != null)
+        if (_coll.CompareTag("Destination") && HasReacheDestination() && target != null)
         {
-            if (_coll.transform == target && HasReacheDestination())
+            if (_coll.transform == target)
             {
-                Debug.Log(":: 格利瘤 档馒 ::");
-                target = null;
-                customerState = CustomerState.Wait;
-                speechBubble.SetActive(true);
+                if(customerState == CustomerState.Move)
+                {
+                    Debug.Log(":: 格利瘤 档馒 ::");
+                    target = null;
+                    customerState = CustomerState.Wait;
+                    speechBubble.SetActive(true);
+                }
+                else if(customerState == CustomerState.CheckOut)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
     }
