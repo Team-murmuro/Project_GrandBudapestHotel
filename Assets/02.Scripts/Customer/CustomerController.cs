@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
-using Utils.ClassUtility;
 using Utils.EnumType;
-using static UnityEngine.GraphicsBuffer;
+using Utils.ClassUtility;
 
 public class CustomerController : MonoBehaviour
 {
@@ -48,6 +47,7 @@ public class CustomerController : MonoBehaviour
                 {
                     currentTime = 0.0f;
                     speechBubble.SetActive(false);
+                    CustomerManager.Instance.CustomerMove();
                     customerState = CustomerState.CheckOut;
                 }
                 else
@@ -99,13 +99,12 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D _coll)
     {
-        if (_coll.CompareTag("Destination") && HasReacheDestination() && target != null)
+        if (_coll.CompareTag("Line") && HasReacheDestination() && target != null)
         {
             if (_coll.transform == target)
             {
                 if(customerState == CustomerState.Move)
                 {
-                    Debug.Log(":: ¸ñÀûÁö µµÂø ::");
                     target = null;
                     customerState = CustomerState.Wait;
                     speechBubble.SetActive(true);

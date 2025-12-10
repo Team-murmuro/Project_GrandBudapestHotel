@@ -9,7 +9,7 @@ public class CustomerManager : MonoBehaviour
 
     public GameObject customerPrefab;
     public List<CustomerData> customers;
-    private Queue<CustomerController> customerQueue = new Queue<CustomerController>();
+    private List<CustomerController> customerQueue = new List<CustomerController>();
 
     public Transform spawnPos;
     public Transform[] impormationPos;
@@ -58,7 +58,7 @@ public class CustomerManager : MonoBehaviour
             CustomerController customer = Instantiate(customerPrefab, spawnPos.position, Quaternion.identity).GetComponent<CustomerController>();
             customer.SetDestination(impormationPos[customerQueue.Count + 1]);
             customer.customerState = Utils.EnumType.CustomerState.Move;
-            customerQueue.Enqueue(customer);
+            customerQueue.Add(customer);
         }
         else
         {
@@ -69,6 +69,11 @@ public class CustomerManager : MonoBehaviour
     // º’¥‘ ¿Ãµø
     public void CustomerMove()
     {
+        customerQueue.Remove(customerQueue[0]);
 
+        for (int i = 0; i < customerQueue.Count; i++)
+        {
+            customerQueue[i].SetDestination(impormationPos[i + 1]);
+        }
     }
 }

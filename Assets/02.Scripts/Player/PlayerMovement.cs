@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D playerRb;
 
-    private Vector2 moveDir;
+    public Vector2 moveDir;
     private float moveSpeed = 5.0f;
     private const float moveThreshold = 0.01f;
 
@@ -28,7 +28,9 @@ public class PlayerMovement : MonoBehaviour
     {
         moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         playerRb.MovePosition(playerRb.position + (moveDir.normalized * moveSpeed * Time.deltaTime));
+        isMove = moveDir.sqrMagnitude > moveThreshold;
 
+        // 맵 밖으로 이동 제한
         if (transform.position.x < minPlayerBoundary.x)
             transform.position = new Vector3(minPlayerBoundary.x, transform.position.y, transform.position.z);
         else if (transform.position.x > maxPlayerBoundary.x)
@@ -37,11 +39,9 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, minPlayerBoundary.y, transform.position.z);
         else if (transform.position.y > maxPlayerBoundary.y)
             transform.position = new Vector3(transform.position.x, maxPlayerBoundary.y, transform.position.z);
-
-        isMove = moveDir.sqrMagnitude > moveThreshold;
     }
 
-    private void OnTriggerEnter2D(Collider2D _coll)
+    private void OnTriggerStay2D(Collider2D _coll)
     {
         if (_coll.CompareTag("Room"))
         {
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_coll.CompareTag("Room"))
         {
+            _coll.isTrigger = false;
             _coll.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
