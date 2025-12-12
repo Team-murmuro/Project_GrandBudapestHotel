@@ -30,4 +30,11 @@ namespace Utils.EnumType
         Work,  // 작업 상태
         Rest   // 휴식 상태
     }
+
+    // 방 타입
+    public enum RoomType
+    {
+        Parlor,   // 객실
+        Facility  // 시설
+    }
 }

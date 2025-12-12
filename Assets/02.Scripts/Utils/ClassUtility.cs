@@ -25,7 +25,7 @@ namespace Utils.ClassUtility
     [Serializable]
     public class CustomerList
     {
-        public List<CustomerData> Customers;
+        public List<CustomerData> Customers = new List<CustomerData>();
     }
 
     [Serializable]
@@ -46,7 +46,7 @@ namespace Utils.ClassUtility
     [Serializable]
     public class RoomList
     {
-        public List<RoomData> Rooms;
+        public List<RoomData> Rooms = new List<RoomData>();
     }
 
     [Serializable]

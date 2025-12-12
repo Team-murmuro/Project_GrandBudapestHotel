@@ -8,7 +8,7 @@ public class CustomerManager : MonoBehaviour
     public static CustomerManager Instance {  get { return instance; } }
 
     public GameObject customerPrefab;
-    public List<CustomerData> customers;
+    public List<CustomerData> customerData;
     private List<CustomerController> customerQueue = new List<CustomerController>();
 
     public Transform spawnPos;
@@ -44,7 +44,7 @@ public class CustomerManager : MonoBehaviour
 
     public void Init()
     {
-        customers = DataManager.Instance.LoadJson<CustomerList>(DataManager.Instance.customerDataFileName).Customers;
+        customerData = DataManager.Instance.LoadJson<CustomerList>(DataManager.Instance.customerDataFileName).Customers;
         spawnPos = GameObject.Find("Door").transform.GetChild(0).transform;
         impormationPos = GameObject.Find("ImpormationLine").GetComponentsInChildren<Transform>();
     }

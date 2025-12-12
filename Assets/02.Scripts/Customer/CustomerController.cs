@@ -8,6 +8,7 @@ public class CustomerController : MonoBehaviour
     public CustomerState customerState = CustomerState.Idle;
     private CustomerData customerData = null;
 
+    private CustomerBehaviour behaviour;
     private NavMeshAgent agent;
     private Transform target;
 
@@ -15,9 +16,11 @@ public class CustomerController : MonoBehaviour
 
     private float currentTime = 0.0f;
     private const float waitTime = 15.0f;
+    private const float idleTime = 10.0f;
 
     private void Awake()
     {
+        behaviour = GetComponent<CustomerBehaviour>();
         agent = GetComponent<NavMeshAgent>();
         speechBubble = transform.GetChild(0).GetChild(0).gameObject;
 
