@@ -4,11 +4,6 @@ using Utils.ClassUtility;
 
 public class Room : MonoBehaviour
 {
-    public RoomType roomType;
+    public ZoneType roomType;
     public RoomData roomData;
-
-    private void Awake()
-    {
-
-    }
 }

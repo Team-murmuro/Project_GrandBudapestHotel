@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Linq;
 using Utils.EnumType;
 using Utils.ClassUtility;
-using System.Collections;
 using System.Collections.Generic;
 
 public class RoomManager : MonoBehaviour
@@ -38,13 +37,13 @@ public class RoomManager : MonoBehaviour
         int parlorsNum = 0;
         for (int i = 0; i < rooms.Count; i++)
         {
-            if (rooms[i].roomType == RoomType.Parlor)
+            if (rooms[i].roomType == ZoneType.Parlor)
             {
                 parlors.Add(rooms[i]);
                 parlors[parlorsNum].roomData = roomData[parlorsNum];
                 parlorsNum++;
             }
-            else if (rooms[i].roomType == RoomType.Facility)
+            else if (rooms[i].roomType == ZoneType.Facility)
             {
                 facilitys.Add(rooms[i]);
             }
@@ -52,11 +51,17 @@ public class RoomManager : MonoBehaviour
     }
 
     // ¹æ ÇÒ´ç
-    public void AssignRoom()
+    public void AssignRoom(CustomerController _customer)
     {
         for(int i = 0; i < parlors.Count; i++)
         {
-
+            if (!parlors[i].roomData.isOccupied)
+            {
+                CustomerManager.Instance.customerQueue.RemoveAt(0);
+                parlors[i].roomData.isOccupied = true;
+                _customer.SetRoom(parlors[i]);
+                break;
+            }
         }
     }
 }

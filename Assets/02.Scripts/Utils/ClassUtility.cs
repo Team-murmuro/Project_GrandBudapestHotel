@@ -38,7 +38,7 @@ namespace Utils.ClassUtility
         public string personality;
         public int stress;
         public int satisfaction;
-        public string roomID;
+        public int roomID;
         public string checkIn_Time;
     }
 

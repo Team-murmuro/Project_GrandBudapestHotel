@@ -5,23 +5,28 @@ using Utils.ClassUtility;
 
 public class CustomerController : MonoBehaviour
 {
+    public ZoneType zone = ZoneType.None;
     public CustomerState customerState = CustomerState.Idle;
-    private CustomerData customerData = null;
 
-    private CustomerBehaviour behaviour;
-    private NavMeshAgent agent;
+    private RoomData room;
+    private CustomerData customerData;
+
     private Transform target;
+    private NavMeshAgent agent;
+    private CustomerBehaviour behaviour;
 
-    private GameObject speechBubble;
+    private SpriteRenderer spriteRenderer; 
+    public GameObject speechBubble;
 
-    private float currentTime = 0.0f;
-    private const float waitTime = 15.0f;
     private const float idleTime = 10.0f;
+    private const float waitTime = 15.0f;
 
     private void Awake()
     {
         behaviour = GetComponent<CustomerBehaviour>();
         agent = GetComponent<NavMeshAgent>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         speechBubble = transform.GetChild(0).GetChild(0).gameObject;
 
         agent.updateRotation = false;
@@ -40,40 +45,45 @@ public class CustomerController : MonoBehaviour
     {
         switch (customerState)
         {
-            case CustomerState.Idle:
+            case CustomerState.MoveToInformation:
                 break;
-            case CustomerState.Move:
-
+            case CustomerState.WaitInQueue:
+                behaviour.OnWaitting(waitTime);
                 break;
-            case CustomerState.Wait:
-                if(currentTime >= waitTime)
-                {
-                    currentTime = 0.0f;
-                    speechBubble.SetActive(false);
-                    CustomerManager.Instance.CustomerMove();
-                    customerState = CustomerState.CheckOut;
-                }
-                else
-                {
-                    currentTime += Time.deltaTime;
-                }
-
-                    break;
+            case CustomerState.MoveToRoom:
+                break;
+            case CustomerState.InRoom:
+                break;
+            case CustomerState.MoveToFacility:
+                break;
+            case CustomerState.UseFacility:
+                break;
             case CustomerState.Wander:
-                break;
-            case CustomerState.Rest:
-                break;
-            case CustomerState.Room:
                 break;
             case CustomerState.Event:
                 break;
-            case CustomerState.Angry:
-                break;
-            case CustomerState.CheckOut:
+            case CustomerState.MoveToExit:
                 SetDestination(CustomerManager.Instance.spawnPos);
-
+                break;
+            case CustomerState.Exit:
                 break;
         }
+    }
+
+    // 손님 초기 설정
+    public void SetCustomer(CustomerData _customer)
+    {
+        customerData = _customer;
+    }
+
+    // 방 할당
+    public void SetRoom(Room _room)
+    {
+        room = _room.roomData;
+        customerData.roomID = room.id;
+        speechBubble.SetActive(false);
+        SetDestination(_room.transform);
+        customerState = CustomerState.MoveToRoom;
     }
 
     // 목적지 설정
@@ -100,23 +110,43 @@ public class CustomerController : MonoBehaviour
         return false;
     }
 
+    private void OnTriggerEnter2D(Collider2D _coll)
+    {
+        if(_coll.GetComponent<Room>()?.roomType == ZoneType.Elevator)
+        {
+            spriteRenderer.enabled = false;
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D _coll)
     {
         if (_coll.CompareTag("Line") && HasReacheDestination() && target != null)
         {
             if (_coll.transform == target)
             {
-                if(customerState == CustomerState.Move)
+                switch (customerState)
                 {
-                    target = null;
-                    customerState = CustomerState.Wait;
-                    speechBubble.SetActive(true);
-                }
-                else if(customerState == CustomerState.CheckOut)
-                {
-                    Destroy(gameObject);
+                    case CustomerState.MoveToInformation:
+                        target = null;
+                        speechBubble.SetActive(true);
+                        zone = ZoneType.Infomation;
+                        customerState = CustomerState.WaitInQueue;
+                        break;
+                    case CustomerState.MoveToRoom:
+                        break;
+                    case CustomerState.MoveToExit:
+                        Destroy(gameObject);
+                        break;
                 }
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D _coll)
+    {
+        if (_coll.GetComponent<Room>()?.roomType == ZoneType.Elevator)
+        {
+            spriteRenderer.enabled = true;
         }
     }
 }

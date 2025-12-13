@@ -37,11 +37,14 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.CompareTag("Customer"))
             {
-                InteractionHandler("체그인 진행");
-
-                if (Input.GetKeyDown(KeyCode.F))
+                if(hit.collider.GetComponent<CustomerController>()?.zone == ZoneType.Infomation)
                 {
+                    InteractionHandler("체그인 진행");
 
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        RoomManager.Instance.AssignRoom(hit.collider.GetComponent<CustomerController>());
+                    }
                 }
             }
             else if(hit.collider.CompareTag("Room"))

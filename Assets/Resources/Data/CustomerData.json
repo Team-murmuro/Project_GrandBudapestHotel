@@ -8,7 +8,7 @@
       "personality" : "Sensitive",
       "stress" : 40,
       "satisfaction": 70,
-      "roomID": "",
+      "roomID": 0,
       "checkIn_Time" :  ""
     },
     {
@@ -19,7 +19,7 @@
       "personality": "Sensitive",
       "stress": 50,
       "satisfaction": 70,
-      "roomID": "",
+      "roomID": 0,
       "checkIn_Time" :  ""
     }
   ]
