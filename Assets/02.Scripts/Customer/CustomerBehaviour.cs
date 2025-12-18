@@ -35,6 +35,9 @@ public class CustomerBehaviour : MonoBehaviour
         {
             if(Random.value < roomValue)
             {
+                // 방 이용
+                Debug.Log("::: 방 사용 :::");
+                controller.customerState = CustomerState.MoveToRoom;
                 controller.SetDestination(controller.roomTransform);
             }
             else
@@ -42,6 +45,8 @@ public class CustomerBehaviour : MonoBehaviour
                 // 시설 이용
                 if (GetRandomPoint(transform.position, 20.0f, out Vector3 randomPos, 9))
                 {
+                    Debug.Log("::: 시설 사용 :::");
+                    controller.customerState = CustomerState.MoveToFacility;
                     controller.SetDestination(randomPos);
                 }
             }
@@ -51,6 +56,8 @@ public class CustomerBehaviour : MonoBehaviour
             // 배회
             if(GetRandomPoint(transform.position, 15.0f, out Vector3 randomPos, 10))
             {
+                Debug.Log("::: 호텔 배회 :::");
+                controller.customerState = CustomerState.Wander;
                 controller.SetDestination(randomPos);
             }
         }
