@@ -22,9 +22,11 @@ namespace Utils.EnumType
     {
         None,       // 기본 상태
         Infomation, // 인포메이션
+        Corridor,   // 복도
         Parlor,     // 객실
         Facility,   // 시설
-        Elevator    // 엘리베이터
+        Elevator,   // 엘리베이터
+        CCTV        // CCTV실
     }
 
     // 손님 상태

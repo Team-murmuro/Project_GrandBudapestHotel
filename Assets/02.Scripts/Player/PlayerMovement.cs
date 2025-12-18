@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private const float moveThreshold = 0.01f;
 
     private Vector2 minPlayerBoundary = new Vector2(-17.9f, -9.7f);
-    private Vector2 maxPlayerBoundary = new Vector2(17.9f, 9.6f);
+    private Vector2 maxPlayerBoundary = new Vector2(17.9f, 9.7f);
 
     public bool isMove = false;
 

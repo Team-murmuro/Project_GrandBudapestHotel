@@ -57,7 +57,7 @@ public class RoomManager : MonoBehaviour
         {
             if (!parlors[i].roomData.isOccupied)
             {
-                CustomerManager.Instance.customerQueue.RemoveAt(0);
+                CustomerManager.Instance.InfomationLineMove();
                 parlors[i].roomData.isOccupied = true;
                 _customer.SetRoom(parlors[i]);
                 break;

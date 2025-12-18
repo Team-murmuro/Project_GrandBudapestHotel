@@ -1949,7 +1949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothing: 0.2
   minCameraBoundary: {x: -9.4, y: -5.3}
-  maxCameraBoundary: {x: 9.4, y: 5.3}
+  maxCameraBoundary: {x: 9.4, y: 5.25}
 --- !u!1 &585493317
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,7 +2050,7 @@ GameObject:
   - component: {fileID: 589544997}
   - component: {fileID: 589544998}
   - component: {fileID: 589544999}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collier_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2560,7 +2560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 2
+  roomType: 3
   roomData:
     id: 0
     name: 
@@ -2577,7 +2577,7 @@ GameObject:
   - component: {fileID: 662483999}
   - component: {fileID: 662484000}
   - component: {fileID: 662484001}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collier_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2896,7 +2896,7 @@ GameObject:
   - component: {fileID: 870948839}
   - component: {fileID: 870948840}
   - component: {fileID: 870948841}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collier_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4422,7 +4422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 2
+  roomType: 3
   roomData:
     id: 0
     name: 
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 2
+  roomType: 3
   roomData:
     id: 0
     name: 
@@ -4920,7 +4920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 3
+  roomType: 6
   roomData:
     id: 0
     name: 
@@ -5106,8 +5106,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1689662344}
   - component: {fileID: 1689662345}
+  - component: {fileID: 1689662348}
+  - component: {fileID: 1689662347}
   - component: {fileID: 1689662346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Toilet
   m_TagString: Room
   m_Icon: {fileID: 0}
@@ -5196,12 +5198,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 3
+  roomType: 4
   roomData:
     id: 0
     name: 
     cleanliness: 0
     isOccupied: 0
+--- !u!114 &1689662347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689662343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
+--- !u!61 &1689662348
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1689662343}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.6571429, y: 8.228572}
+    newSize: {x: 3.6571429, y: 8.228572}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 3.6571429, y: 8.228572}
+  m_EdgeRadius: 0
 --- !u!1 &1720251324
 GameObject:
   m_ObjectHideFlags: 0
@@ -5653,7 +5717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomType: 2
+  roomType: 3
   roomData:
     id: 0
     name: 
@@ -6375,7 +6439,7 @@ GameObject:
   - component: {fileID: 2122113147}
   - component: {fileID: 2122113148}
   - component: {fileID: 2122113149}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Collier_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,6 +11,8 @@ public class CustomerController : MonoBehaviour
     private RoomData room;
     private CustomerData customerData;
 
+    public Transform roomTransform;
+
     private Transform target;
     private NavMeshAgent agent;
     private CustomerBehaviour behaviour;
@@ -59,6 +61,8 @@ public class CustomerController : MonoBehaviour
             case CustomerState.UseFacility:
                 break;
             case CustomerState.Wander:
+                // 배회중
+
                 break;
             case CustomerState.Event:
                 break;
@@ -79,11 +83,13 @@ public class CustomerController : MonoBehaviour
     // 방 할당
     public void SetRoom(Room _room)
     {
+        zone = ZoneType.None;
         room = _room.roomData;
         customerData.roomID = room.id;
+        roomTransform = _room.gameObject.transform;
+
         speechBubble.SetActive(false);
-        SetDestination(_room.transform);
-        customerState = CustomerState.MoveToRoom;
+        behaviour.SetAction();
     }
 
     // 목적지 설정
@@ -91,6 +97,11 @@ public class CustomerController : MonoBehaviour
     {
         target = _target;
         agent.SetDestination(_target.position);
+    }
+
+    public void SetDestination(Vector3 _target)
+    {
+        agent.SetDestination(_target);
     }
 
     // 목적지에 도착했는지 확인

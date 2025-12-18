@@ -1,14 +1,59 @@
 using UnityEngine;
+using UnityEngine.AI;
 using Utils.EnumType;
 
 public class CustomerBehaviour : MonoBehaviour
 {
     private CustomerController controller;
+
+    private Vector3 randomPos;
     private float currentTime = 0.0f;
+    private const float facilityValue = 0.4f;
+    private const float roomValue = 0.5f;
 
     private void Start()
     {
         controller = GetComponent<CustomerController>();
+    }
+
+    // 상태 변경
+    public void ChangeState(CustomerState _state)
+    {
+        controller.customerState = _state;
+
+        switch (_state)
+        {
+            case CustomerState.Idle:
+                break;
+        }
+    }
+
+    // 다음 행동 결정
+    public void SetAction()
+    {
+        if(Random.value < facilityValue)
+        {
+            if(Random.value < roomValue)
+            {
+                controller.SetDestination(controller.roomTransform);
+            }
+            else
+            {
+                // 시설 이용
+                if (GetRandomPoint(transform.position, 20.0f, out Vector3 randomPos, 9))
+                {
+                    controller.SetDestination(randomPos);
+                }
+            }
+        }
+        else
+        {
+            // 배회
+            if(GetRandomPoint(transform.position, 15.0f, out Vector3 randomPos, 10))
+            {
+                controller.SetDestination(randomPos);
+            }
+        }
     }
 
     // 기다리기
@@ -33,9 +78,21 @@ public class CustomerBehaviour : MonoBehaviour
         }
     }
 
-    // 다음 행동 설정
-    public void SetAction()
+    // 랜덤 위치 가져오기
+    public bool GetRandomPoint(Vector3 _center, float _range, out Vector3 _result, int _mask)
     {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector3 randomPoint = _center + Random.insideUnitSphere * _range;
 
+            if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 2.0f, 1 << _mask))
+            {
+                _result = hit.position;
+                return true;
+            }
+        }
+
+        _result = Vector3.zero;
+        return false;
     }
 }
