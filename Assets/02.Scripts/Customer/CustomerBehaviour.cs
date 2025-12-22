@@ -28,6 +28,34 @@ public class CustomerBehaviour : MonoBehaviour
         }
     }
 
+    // 기다리기
+    public void OnWaitting(float _timer)
+    {
+        if (currentTime >= _timer)
+        {
+            currentTime = 0.0f;
+
+            switch (controller.zone)
+            {
+                case ZoneType.Infomation:
+                    controller.customerState = CustomerState.MoveToExit;
+                    CustomerManager.Instance.InfomationLineMove();
+                    controller.speechBubble.SetActive(false);
+                    break;
+                case ZoneType.Parlor:
+                    SetAction();
+                    break;
+                case ZoneType.Facility:
+                    SetAction();
+                    break;
+            }
+        }
+        else
+        {
+            currentTime += Time.deltaTime;
+        }
+    }
+
     // 다음 행동 결정
     public void SetAction()
     {
@@ -37,7 +65,7 @@ public class CustomerBehaviour : MonoBehaviour
             {
                 // 방 이용
                 Debug.Log("::: 방 사용 :::");
-                controller.customerState = CustomerState.MoveToRoom;
+                controller.customerState = CustomerState.MoveToParlor;
                 controller.SetDestination(controller.roomTransform);
             }
             else
@@ -57,28 +85,6 @@ public class CustomerBehaviour : MonoBehaviour
                 controller.customerState = CustomerState.Wander;
                 controller.SetDestination(randomPos);
             }
-        }
-    }
-
-    // 기다리기
-    public void OnWaitting(float _timer)
-    {
-        if (currentTime >= _timer)
-        {
-            currentTime = 0.0f;
-
-            switch (controller.zone)
-            {
-                case ZoneType.Infomation:
-                    controller.customerState = CustomerState.MoveToExit;
-                    CustomerManager.Instance.InfomationLineMove();
-                    controller.speechBubble.SetActive(false);
-                    break;
-            }
-        }
-        else
-        {
-            currentTime += Time.deltaTime;
         }
     }
 

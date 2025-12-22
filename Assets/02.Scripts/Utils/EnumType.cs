@@ -38,7 +38,7 @@ namespace Utils.EnumType
         WaitInQueue,       // 체크인 대기 중
 
         // 시설 이용
-        MoveToRoom,        // 방으로 이동
+        MoveToParlor,        // 방으로 이동
         InRoom,            // 방 내부 (휴식, 수면 등)
         MoveToFacility,    // 시설로 이동
         UseFacility,       // 시설 이용 중

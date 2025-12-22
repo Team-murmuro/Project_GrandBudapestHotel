@@ -53,21 +53,17 @@ public class CustomerController : MonoBehaviour
             case CustomerState.WaitInQueue:
                 behaviour.OnWaitting(waitTime);
                 break;
-            case CustomerState.MoveToRoom:
-                break;
-            case CustomerState.InRoom:
-                break;
-            case CustomerState.UseFacility:
-                break;
             case CustomerState.Wander:
-                // ¹èÈ¸Áß
+                if(HasReacheDestination() && target != null)
+                {
+
+                }
+
                 break;
             case CustomerState.Event:
                 break;
             case CustomerState.MoveToExit:
                 SetDestination(CustomerManager.Instance.spawnPos);
-                break;
-            case CustomerState.Exit:
                 break;
         }
     }
@@ -145,6 +141,24 @@ public class CustomerController : MonoBehaviour
                         Destroy(gameObject);
                         break;
                 }
+            }
+        }
+        else if (HasReacheDestination() && target != null && _coll.transform == target)
+        {
+            switch (customerState)
+            {
+                case CustomerState.MoveToParlor:
+                    Debug.Log(":: ¹æ µµÂø ::");
+                    target = null;
+                    zone = ZoneType.Parlor;
+                    customerState = CustomerState.Idle;
+                    break;
+                case CustomerState.MoveToFacility:
+                    Debug.Log(":: ½Ã¼³ µµÂø ::");
+                    target = null;
+                    zone = ZoneType.Facility;
+                    customerState = CustomerState.Idle;
+                    break;
             }
         }
     }
