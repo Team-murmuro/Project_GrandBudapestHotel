@@ -47,7 +47,8 @@ public class CustomerController : MonoBehaviour
     {
         switch (customerState)
         {
-            case CustomerState.MoveToInformation:
+            case CustomerState.Idle:
+                behaviour.OnWaitting(idleTime);
                 break;
             case CustomerState.WaitInQueue:
                 behaviour.OnWaitting(waitTime);
@@ -56,13 +57,10 @@ public class CustomerController : MonoBehaviour
                 break;
             case CustomerState.InRoom:
                 break;
-            case CustomerState.MoveToFacility:
-                break;
             case CustomerState.UseFacility:
                 break;
             case CustomerState.Wander:
                 // πË»∏¡ﬂ
-
                 break;
             case CustomerState.Event:
                 break;
@@ -142,8 +140,6 @@ public class CustomerController : MonoBehaviour
                         speechBubble.SetActive(true);
                         zone = ZoneType.Infomation;
                         customerState = CustomerState.WaitInQueue;
-                        break;
-                    case CustomerState.MoveToRoom:
                         break;
                     case CustomerState.MoveToExit:
                         Destroy(gameObject);

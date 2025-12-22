@@ -43,18 +43,15 @@ public class CustomerBehaviour : MonoBehaviour
             else
             {
                 // 시설 이용
-                if (GetRandomPoint(transform.position, 20.0f, out Vector3 randomPos))
-                {
-                    Debug.Log("::: 호텔 배회 :::");
-                    controller.customerState = CustomerState.Wander;
-                    controller.SetDestination(randomPos);
-                }
+                Debug.Log("::: 호텔 이용 :::");
+                controller.customerState = CustomerState.MoveToFacility;
+                controller.SetDestination(RoomManager.Instance.facilitys[Random.Range(0, RoomManager.Instance.facilitys.Count)].gameObject.transform);
             }
         }
         else
         {
             // 배회
-            if(GetRandomPoint(transform.position, 20.0f, out Vector3 randomPos))
+            if(GetRandomPoint(transform.position, 15.0f, out randomPos))
             {
                 Debug.Log("::: 호텔 배회 :::");
                 controller.customerState = CustomerState.Wander;
@@ -86,9 +83,9 @@ public class CustomerBehaviour : MonoBehaviour
     }
 
     // 랜덤 위치 가져오기
-    public bool GetRandomPoint(Vector3 _center, float _range, out Vector3 _result)
+    public bool GetRandomPoint(Vector3 _center, float _range, out Vector3 _result, int _tryCount = 30)
     {
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < _tryCount; i++)
         {
             Vector3 randomPoint = _center + Random.insideUnitSphere * _range;
 
