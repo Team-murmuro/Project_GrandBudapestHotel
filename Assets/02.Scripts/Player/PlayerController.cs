@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            else if(hit.collider.CompareTag("Room"))
+            else if(hit.collider.CompareTag("Room") && !hit.collider.isTrigger)
             {
                 InteractionHandler("¹® ¿­±â");
 

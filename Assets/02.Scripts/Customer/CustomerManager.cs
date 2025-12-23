@@ -9,14 +9,15 @@ public class CustomerManager : MonoBehaviour
 
     public GameObject customerPrefab;
     public List<CustomerData> customerData;
-    public List<CustomerController> customerQueue = new List<CustomerController>();
+    public List<CustomerController> customers = new List<CustomerController>();      // 호텔에 있는 손님들
+    public List<CustomerController> customerQueue = new List<CustomerController>();  // 체크인줄에 있는 손님들
 
     public Transform spawnPos;
     public Transform[] impormationPos;
 
-    private const int maxCustomerQueue = 5;
-    private float customerSpawnTime = 10.0f;
     private float currentTime = 0.0f;
+    private float customerSpawnTime = 10.0f;   // 손님 생성 시간
+    private const int maxCustomerQueue = 5;    // 체크인줄 최대 손님수
 
     private void Awake()
     {
@@ -52,15 +53,18 @@ public class CustomerManager : MonoBehaviour
     // 손님 생성
     public void CustomerSpawn()
     {
-        if(currentTime >= customerSpawnTime && customerQueue.Count < 5)
+        if(currentTime >= customerSpawnTime && customerQueue.Count < maxCustomerQueue)
         {
-            currentTime = 0.0f;
-            CustomerController customer = Instantiate(customerPrefab, spawnPos.position, Quaternion.identity).GetComponent<CustomerController>();
+            if(customers.Count < RoomManager.Instance.parlors.Count)
+            {
+                currentTime = 0.0f;
+                CustomerController customer = Instantiate(customerPrefab, spawnPos.position, Quaternion.identity).GetComponent<CustomerController>();
 
-            customer.SetCustomer(customerData[Random.Range(0, customerData.Count)]);
-            customer.SetDestination(impormationPos[customerQueue.Count + 1]);
-            customer.customerState = Utils.EnumType.CustomerState.MoveToInformation;
-            customerQueue.Add(customer);
+                customer.SetCustomer(customerData[Random.Range(0, customerData.Count)]);
+                customer.SetDestination(impormationPos[customerQueue.Count + 1]);
+                customer.customerState = Utils.EnumType.CustomerState.MoveToInformation;
+                customerQueue.Add(customer);
+            }
         }
         else
         {

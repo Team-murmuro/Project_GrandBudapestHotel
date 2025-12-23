@@ -103,6 +103,9 @@ public class CustomerController : MonoBehaviour
     // 목적지에 도착했는지 확인
     private bool HasReacheDestination()
     {
+        if (!agent.enabled || !agent.isOnNavMesh)
+            return false;
+
         // 경로 계산이 끝났다면
         if (!agent.pathPending)
         {
@@ -127,22 +130,19 @@ public class CustomerController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D _coll)
     {
-        if (_coll.CompareTag("Line") && HasReacheDestination() && target != null)
+        if (_coll.CompareTag("Line") && HasReacheDestination() && target != null && _coll.transform == target)
         {
-            if(_coll.transform == target)
+            switch (customerState)
             {
-                switch (customerState)
-                {
-                    case CustomerState.MoveToInformation:
-                        target = null;
-                        speechBubble.SetActive(true);
-                        zone = ZoneType.Infomation;
-                        customerState = CustomerState.WaitInQueue;
-                        break;
-                    case CustomerState.MoveToExit:
-                        Destroy(gameObject);
-                        break;
-                }
+                case CustomerState.MoveToInformation:
+                    target = null;
+                    speechBubble.SetActive(true);
+                    zone = ZoneType.Infomation;
+                    customerState = CustomerState.WaitInQueue;
+                    break;
+                case CustomerState.MoveToExit:
+                    Destroy(gameObject);
+                    break;
             }
         }
         else if (HasReacheDestination() && target != null && _coll.transform == target)

@@ -57,6 +57,7 @@ public class RoomManager : MonoBehaviour
         {
             if (!parlors[i].roomData.isOccupied)
             {
+                CustomerManager.Instance.customers.Add(_customer);
                 CustomerManager.Instance.InfomationLineMove();
                 parlors[i].roomData.isOccupied = true;
                 _customer.SetRoom(parlors[i]);
