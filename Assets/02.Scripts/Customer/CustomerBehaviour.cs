@@ -8,24 +8,12 @@ public class CustomerBehaviour : MonoBehaviour
 
     private Vector3 randomPos;
     private float currentTime = 0.0f;
+    private const float parlorValue = 0.5f;
     private const float facilityValue = 0.4f;
-    private const float roomValue = 0.5f;
 
     private void Start()
     {
         controller = GetComponent<CustomerController>();
-    }
-
-    // 상태 변경
-    public void ChangeState(CustomerState _state)
-    {
-        controller.customerState = _state;
-
-        switch (_state)
-        {
-            case CustomerState.Idle:
-                break;
-        }
     }
 
     // 기다리기
@@ -41,6 +29,9 @@ public class CustomerBehaviour : MonoBehaviour
                     controller.customerState = CustomerState.MoveToExit;
                     CustomerManager.Instance.InfomationLineMove();
                     controller.speechBubble.SetActive(false);
+                    break;
+                case ZoneType.Corridor:
+                    SetAction();
                     break;
                 case ZoneType.Parlor:
                     SetAction();
@@ -61,7 +52,7 @@ public class CustomerBehaviour : MonoBehaviour
     {
         if(Random.value < facilityValue)
         {
-            if(Random.value < roomValue)
+            if(Random.value < parlorValue)
             {
                 // 방 이용
                 Debug.Log("::: 방 사용 :::");
@@ -88,7 +79,7 @@ public class CustomerBehaviour : MonoBehaviour
         }
     }
 
-    // 랜덤 위치 가져오기
+    // 네비메쉬에서 랜덤 위치 가져오기
     public bool GetRandomPoint(Vector3 _center, float _range, out Vector3 _result, int _tryCount = 30)
     {
         for (int i = 0; i < _tryCount; i++)

@@ -54,9 +54,11 @@ public class CustomerController : MonoBehaviour
                 behaviour.OnWaitting(waitTime);
                 break;
             case CustomerState.Wander:
-                if(HasReacheDestination() && target != null)
+                if(HasReacheDestination())
                 {
-
+                    Debug.Log(":: ¹èÈ¸ µµÂø ::");
+                    zone = ZoneType.Corridor;
+                    customerState = CustomerState.Idle;
                 }
 
                 break;
@@ -127,7 +129,7 @@ public class CustomerController : MonoBehaviour
     {
         if (_coll.CompareTag("Line") && HasReacheDestination() && target != null)
         {
-            if (_coll.transform == target)
+            if(_coll.transform == target)
             {
                 switch (customerState)
                 {
