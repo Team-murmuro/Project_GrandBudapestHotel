@@ -47,14 +47,19 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            else if(hit.collider.CompareTag("Room") && !hit.collider.isTrigger)
+            else if(hit.collider.CompareTag("Room"))
             {
-                InteractionHandler("문 열기");
-
-                if (Input.GetKeyDown(KeyCode.F))
+                if (!hit.collider.isTrigger)
                 {
-                    hit.collider.isTrigger = true;
+                    InteractionHandler("문 열기");
+
+                    if (Input.GetKeyDown(KeyCode.F))
+                    {
+                        hit.collider.isTrigger = true;
+                    }
                 }
+                else
+                    interactionObject.SetActive(false);
             }
         }
     }

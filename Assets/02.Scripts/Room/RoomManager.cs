@@ -32,7 +32,7 @@ public class RoomManager : MonoBehaviour
     private void Init()
     {
         roomData = DataManager.Instance.LoadJson<RoomList>(DataManager.Instance.roomDataFileName).Rooms;
-        List<Room> rooms = GameObject.FindGameObjectsWithTag("Room").Select(obj => obj.GetComponent<Room>()).ToList();
+        List<Room> rooms = GameObject.FindGameObjectsWithTag("Room").Select(x => x.GetComponent<Room>()).ToList();
 
         int parlorsNum = 0;
         for (int i = 0; i < rooms.Count; i++)

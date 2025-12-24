@@ -1871,7 +1871,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 51e3efda6861e894d8bd6b0e1190aff2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2a736a1c99105e943a2844ae1c15b3e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3072,6 +3072,10 @@ MonoBehaviour:
   cctvSprits:
   - {fileID: 21300000, guid: 51e3efda6861e894d8bd6b0e1190aff2, type: 3}
   - {fileID: 21300000, guid: 2a736a1c99105e943a2844ae1c15b3e1, type: 3}
+  cctvImages: []
+  cctvPos:
+  - {x: 0, y: 0, z: -10}
+  - {x: 0, y: 20.5, z: -10}
 --- !u!4 &681775121
 Transform:
   m_ObjectHideFlags: 0
@@ -3710,7 +3714,7 @@ GameObject:
   m_Component:
   - component: {fileID: 876582315}
   - component: {fileID: 876582316}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4296,7 +4300,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1144611853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4948,7 +4952,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258734436}
   - component: {fileID: 1258734437}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6309,7 +6313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1665281578}
   - component: {fileID: 1665281579}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Collider_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
