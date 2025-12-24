@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -7,7 +8,10 @@ public class UIManager : MonoBehaviour
 
     private Canvas canvas;
     private Camera cctvCam;
+
     private GameObject cctvPhanel;
+    private Button[] cctvButtons;
+    public Sprite[] cctvSprits;
 
     private void Awake()
     {
@@ -25,7 +29,9 @@ public class UIManager : MonoBehaviour
     {
         canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         cctvCam = GameObject.Find("CCTV Camera").GetComponent<Camera>();
+
         cctvPhanel = canvas.transform.GetChild(1).gameObject;
+        cctvButtons = cctvPhanel.transform.GetChild(1).GetComponentsInChildren<Button>();
     }
 
     private void Update()
@@ -49,5 +55,10 @@ public class UIManager : MonoBehaviour
     {
         cctvCam.enabled = true;
         cctvPhanel.SetActive(true);
+    }
+
+    public void OnCCTVButton(int _floor)
+    {
+
     }
 }
