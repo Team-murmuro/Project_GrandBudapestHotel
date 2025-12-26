@@ -47,10 +47,11 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            else if(hit.collider.CompareTag("Room"))
+            if(hit.collider.CompareTag("Room"))
             {
                 if (!hit.collider.isTrigger)
                 {
+                    Debug.Log(":: 문 열기 ::");
                     InteractionHandler("문 열기");
 
                     if (Input.GetKeyDown(KeyCode.F))
@@ -60,6 +61,11 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                     interactionObject.SetActive(false);
+            }
+            if (hit.collider.CompareTag("CCTV"))
+            {
+                Debug.Log(":: CCTV 보기 ::");
+                InteractionHandler("CCTV 보기");
             }
         }
     }
@@ -77,6 +83,6 @@ public class PlayerController : MonoBehaviour
         if (hit.collider == null)
             interactionObject.SetActive(false);
 
-        hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.5f, 0), dir, 2f, (1 << 7) + (1 << 8));
+        hit = Physics2D.Raycast(transform.position + new Vector3(0, 0.5f, 0), dir, 2f, (1 << 7) + (1 << 8) + (1 << 11));
     }
 }
