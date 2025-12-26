@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     private static UIManager instance;
     public static UIManager Instance {  get { return instance; } }
 
+    private PlayerMovement playerMovement;
+
     private Canvas canvas;
     private Camera cctvCam;
 
@@ -32,6 +34,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         canvas = GameObject.Find("MainCanvas").GetComponent<Canvas>();
         cctvCam = GameObject.Find("CCTV Camera").GetComponent<Camera>();
 
@@ -50,8 +53,7 @@ public class UIManager : MonoBehaviour
         {
             if (cctvPhanel.activeSelf)
             {
-                cctvCam.enabled = false;
-                cctvPhanel.SetActive(false);
+                OnCCTV(false);
             }
         }
     }
@@ -61,10 +63,20 @@ public class UIManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void OnCCTV()
+    public void OnCCTV(bool _open)
     {
-        cctvCam.enabled = true;
-        cctvPhanel.SetActive(true);
+        if (_open)
+        {
+            cctvCam.enabled = true;
+            cctvPhanel.SetActive(true);
+            playerMovement.isMoveLock = true;
+        }
+        else
+        {
+            cctvCam.enabled = false;
+            cctvPhanel.SetActive(false);
+            playerMovement.isMoveLock = false;
+        }
     }
 
     public void OnCCTVButton(int _floor)

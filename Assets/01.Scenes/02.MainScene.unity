@@ -615,7 +615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &154240445
 Transform:
   m_ObjectHideFlags: 0
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveDir: {x: 0, y: 0}
-  isMove: 0
+  isMoveLock: 0
 --- !u!70 &414332649
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1832,8 +1832,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.00038716197, y: 0.008625925}
-  m_Size: {x: 0.5749156, y: 1.1660436}
+  m_Offset: {x: -0.009884596, y: -0.01534152}
+  m_Size: {x: 0.36948013, y: 1.1181087}
   m_Direction: 0
 --- !u!50 &414332650
 Rigidbody2D:
@@ -3083,6 +3083,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!1 &661289228
 GameObject:
   m_ObjectHideFlags: 0
@@ -3992,7 +3993,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0036904812, y: -1.0111012}
+  m_Offset: {x: 0.068124056, y: -1.0111012}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -4002,7 +4003,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.217582, y: 0.14951324}
+  m_Size: {x: 4.3464494, y: 0.14951324}
   m_EdgeRadius: 0
 --- !u!1 &910033514
 GameObject:
@@ -4106,6 +4107,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!1 &941302291
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,7 +4258,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -4290,6 +4292,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!1 &1014809480
 GameObject:
   m_ObjectHideFlags: 0
@@ -4778,7 +4781,7 @@ GameObject:
   - component: {fileID: 1151209638}
   - component: {fileID: 1151209640}
   - component: {fileID: 1151209639}
-  m_Layer: 11
+  m_Layer: 8
   m_Name: Chair
   m_TagString: CCTV
   m_Icon: {fileID: 0}
@@ -4834,7 +4837,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.013402224}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4844,7 +4847,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.51428574, y: 0.6857143}
+  m_Size: {x: 0.4472742, y: 0.64550734}
   m_EdgeRadius: 0
 --- !u!212 &1151209640
 SpriteRenderer:
@@ -5543,7 +5546,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0036904812, y: 2.2758856}
+  m_Offset: {x: 0.068124056, y: 2.2758856}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5553,7 +5556,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.217582, y: 0.91986656}
+  m_Size: {x: 4.3464494, y: 0.91986656}
   m_EdgeRadius: 0
 --- !u!1 &1278259259
 GameObject:
@@ -5760,6 +5763,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!1 &1355088271
 GameObject:
   m_ObjectHideFlags: 0
@@ -6051,6 +6055,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!1 &1404312855
 GameObject:
   m_ObjectHideFlags: 0
@@ -6475,7 +6480,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1520139429}
   - component: {fileID: 1520139430}
-  - component: {fileID: 1520139431}
+  - component: {fileID: 1520139433}
   - component: {fileID: 1520139432}
   m_Layer: 8
   m_Name: CCTVRoom
@@ -6557,7 +6562,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1520139431
+--- !u!114 &1520139432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520139428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomType: 6
+  roomData:
+    id: 0
+    name: 
+    cleanliness: 0
+    isOccupied: 0
+  isInSide: 0
+--- !u!61 &1520139433
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6591,7 +6615,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.08949804, y: 0.43118072}
+  m_Offset: {x: 2.1887531, y: 0.60277915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -6601,26 +6625,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.392432, y: 2.7409844}
+  m_Size: {x: 0.22249317, y: 1.7541184}
   m_EdgeRadius: 0
---- !u!114 &1520139432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520139428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd2e8960de1c9504fbf933d7f8f80f56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomType: 6
-  roomData:
-    id: 0
-    name: 
-    cleanliness: 0
-    isOccupied: 0
 --- !u!1 &1560772053
 GameObject:
   m_ObjectHideFlags: 0
@@ -7390,6 +7396,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!114 &1689662347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7751,6 +7758,7 @@ MonoBehaviour:
     name: 
     cleanliness: 0
     isOccupied: 0
+  isInSide: 0
 --- !u!1 &1863715542
 GameObject:
   m_ObjectHideFlags: 0

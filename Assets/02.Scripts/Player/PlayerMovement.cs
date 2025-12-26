@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 minPlayerBoundary = new Vector2(-17.9f, -9.7f);
     private Vector2 maxPlayerBoundary = new Vector2(17.9f, 9.7f);
 
-    public bool isMove = false;
+    private bool isMove = false;
+    public bool isMoveLock = false;
 
     private void Start()
     {
@@ -20,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isMoveLock)
+            return;
+
         Move();
     }
 
@@ -41,20 +47,27 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, maxPlayerBoundary.y, transform.position.z);
     }
 
-    private void OnTriggerStay2D(Collider2D _coll)
-    {
-        if (_coll.CompareTag("Room"))
-        {
-            _coll.transform.GetChild(0).gameObject.SetActive(false);
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D _coll)
     {
         if (_coll.CompareTag("Room"))
         {
-            _coll.isTrigger = false;
-            _coll.transform.GetChild(0).gameObject.SetActive(true);
+            Room _room = _coll.GetComponent<Room>();
+
+            if(_room != null)
+            {
+                if (_room.isInSide)
+                {
+                    _room.isInSide = false;
+                    _coll.isTrigger = false;
+                    _coll.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                else
+                {
+                    _room.isInSide = true;
+                    _coll.isTrigger = false;
+                    _coll.transform.GetChild(0).gameObject.SetActive(false);
+                }
+            }
         }
     }
 }

@@ -6,4 +6,6 @@ public class Room : MonoBehaviour
 {
     public ZoneType roomType;
     public RoomData roomData;
+
+    public bool isInSide = false;
 }
